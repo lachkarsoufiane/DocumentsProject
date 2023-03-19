@@ -7,7 +7,7 @@ using Model;
 
 namespace Data;
 
-public partial class PracticeContext : DbContext
+public partial class PracticeContext : DbContext, IPracticeContext
 {
     public PracticeContext()
     {

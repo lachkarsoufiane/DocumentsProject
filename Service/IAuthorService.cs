@@ -1,4 +1,5 @@
 ﻿using Model;
+using DataModel;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,7 @@ namespace Service
 {
     public interface IAuthorService
     {
-        Task<List<Author>> GetAllAuthors();
+        List<AuthorInfo> GetAllAuthors();
         Task<Author> GetAuthorById(Guid id);
         Task<List<Author>> AddAuthor(Author author);
 

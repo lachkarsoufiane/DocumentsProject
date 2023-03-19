@@ -6,68 +6,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mapster;
+using DataModel;
 
 namespace Service
 {
     public class AuthorService : IAuthorService
     {
-        private readonly PracticeContext context;
+        private readonly IPracticeContextFactory contextFactory;
 
-        public AuthorService(PracticeContext context)
+        public AuthorService(IPracticeContextFactory context)
         {
-            this.context = context;
+            this.contextFactory = context;
         }
 
-        public async Task<List<Author>> GetAllAuthors()
+        public Task<List<Author>> AddAuthor(Author author)
         {
-            var authors = await context.Authors.ToListAsync();
-            return authors;
+            throw new NotImplementedException();
         }
 
-        public async Task<Author>? GetAuthorById(Guid id)
+        public Task<List<Author>> DeleteAuthor(Guid id)
         {
-            var author = await context.Authors.FindAsync(id);
-
-            return author;
+            throw new NotImplementedException();
         }
 
-        public async Task<List<Author>> AddAuthor(Author author)
+        public async Task<List<AuthorInfo>> GetAllAuthors()
         {
-            context.Authors.Add(author);
+            using ( var context = contextFactory.CreateContext()) { 
 
-            await context.SaveChangesAsync();
+                List<AuthorInfo> result = new List<AuthorInfo>();
 
-            return await context.Authors.ToListAsync() ;
+                //var authors = await context.Authors.ToListAsync();
+
+                result.AddRange(context.Authors.Select(author => author.Adapt<AuthorInfo>()).ToListAsync());
+
+                return result;
+            }
         }
 
-        public async Task<List<Author>> UpdateAuthor(Guid id, Author request)
+        public Task<Author> GetAuthorById(Guid id)
         {
-            var author = await context.Authors.FindAsync(id);
-
-            if (author is null) return null;
-
-            author.Name = request.Name;
-            author.Surname = request.Surname;
-
-            await context.SaveChangesAsync();
-
-            return await context.Authors.ToListAsync();
-
+            throw new NotImplementedException();
         }
 
-        public async Task<List<Author>> DeleteAuthor(Guid id)
+        public Task<List<Author>> UpdateAuthor(Guid id, Author request)
         {
-            var author = await context.Authors.FindAsync(id);
-            if (author is null) return null;
-
-            context.Authors.Remove(author);
-            await context.SaveChangesAsync();
-
-            return await context.Authors.ToListAsync();
+            throw new NotImplementedException();
         }
-
-
-
-
     }
 }

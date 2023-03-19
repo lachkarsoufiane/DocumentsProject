@@ -15,6 +15,8 @@ builder.Services.AddSwaggerGen();
 builder.Services.AddScoped<IDocumentService, DocumentService>();
 builder.Services.AddScoped<IAuthorService, AuthorService>();
 
+
+
 builder.Services.AddDbContext<PracticeContext>();
 
 var app = builder.Build();
