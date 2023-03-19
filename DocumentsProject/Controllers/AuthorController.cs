@@ -44,6 +44,27 @@ namespace DocumentsProject.Controllers
 
             return Ok(result);
         }
+
+
+        [HttpPut("{id}")]
+
+        public async Task<ActionResult<List<Author>>> UpdateAuthor(Guid id, Author request)
+        {
+            var result = await authorService.UpdateAuthor(id, request);
+            return Ok(result);
+        }
+
+        [HttpDelete("id")]
+        public async Task<ActionResult<List<Author>>> DeleteAuthor(Guid id)
+        {
+            var result = await authorService.DeleteAuthor(id);
+            if (result is null) return NotFound($"El author con el id {id} no existe");
+
+            return Ok(result);
+        }
+
+
+        
         
     }
 }

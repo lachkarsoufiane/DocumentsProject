@@ -40,7 +40,34 @@ namespace Service
             return await context.Authors.ToListAsync() ;
         }
 
+        public async Task<List<Author>> UpdateAuthor(Guid id, Author request)
+        {
+            var author = await context.Authors.FindAsync(id);
 
-        
+            if (author is null) return null;
+
+            author.Name = request.Name;
+            author.Surname = request.Surname;
+
+            await context.SaveChangesAsync();
+
+            return await context.Authors.ToListAsync();
+
+        }
+
+        public async Task<List<Author>> DeleteAuthor(Guid id)
+        {
+            var author = await context.Authors.FindAsync(id);
+            if (author is null) return null;
+
+            context.Authors.Remove(author);
+            await context.SaveChangesAsync();
+
+            return await context.Authors.ToListAsync();
+        }
+
+
+
+
     }
 }

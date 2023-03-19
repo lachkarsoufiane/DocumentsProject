@@ -12,5 +12,9 @@ namespace Service
         Task<List<Author>> GetAllAuthors();
         Task<Author> GetAuthorById(Guid id);
         Task<List<Author>> AddAuthor(Author author);
+
+        Task<List<Author>> UpdateAuthor(Guid id, Author request);
+        Task<List<Author>> DeleteAuthor(Guid id);
+
     }
 }
