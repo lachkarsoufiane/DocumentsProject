@@ -20,36 +20,38 @@ namespace Service
             this.contextFactory = context;
         }
 
-        public Task<List<Author>> AddAuthor(Author author)
-        {
-            throw new NotImplementedException();
-        }
 
-        public Task<List<Author>> DeleteAuthor(Guid id)
+        public List<AuthorInfo> GetAllAuthors()
         {
-            throw new NotImplementedException();
-        }
-
-        public async Task<List<AuthorInfo>> GetAllAuthors()
-        {
-            using ( var context = contextFactory.CreateContext()) { 
+            using (var context = contextFactory.CreateContext())
+            {
 
                 List<AuthorInfo> result = new List<AuthorInfo>();
 
-                //var authors = await context.Authors.ToListAsync();
-
-                result.AddRange(context.Authors.Select(author => author.Adapt<AuthorInfo>()).ToListAsync());
+                result.AddRange(context.Authors.Select(author => author.Adapt<AuthorInfo>()).ToList());
 
                 return result;
             }
         }
 
-        public Task<Author> GetAuthorById(Guid id)
+        public AuthorInfo GetAuthorById(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<List<Author>> UpdateAuthor(Guid id, Author request)
+
+        public List<Author> AddAuthor(AuthorInfo author)
+        {
+            throw new NotImplementedException();
+        }
+
+        public List<Author> DeleteAuthor(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
+
+        public List<Author> UpdateAuthor(Guid id, Author request)
         {
             throw new NotImplementedException();
         }

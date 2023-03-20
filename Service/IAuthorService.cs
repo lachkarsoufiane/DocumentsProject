@@ -11,11 +11,11 @@ namespace Service
     public interface IAuthorService
     {
         List<AuthorInfo> GetAllAuthors();
-        Task<Author> GetAuthorById(Guid id);
-        Task<List<Author>> AddAuthor(Author author);
+        AuthorInfo GetAuthorById(Guid id);
+        List<Author> AddAuthor(AuthorInfo author);
 
-        Task<List<Author>> UpdateAuthor(Guid id, Author request);
-        Task<List<Author>> DeleteAuthor(Guid id);
+        List<Author> UpdateAuthor(Guid id, Author request);
+        List<Author> DeleteAuthor(Guid id);
 
     }
 }
